@@ -9,6 +9,6 @@
 </head>
 <body>
     <p>index.php</p>
-    <p><?php echo "test" ?></p>
+    <p><?php echo "test commit" ?></p>
 </body>
 </html>
