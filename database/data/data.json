@@ -1,0 +1,235 @@
+{
+    "name": "paris saint-germain",
+    "logo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Clubs/2023-2024/13.png",
+    "coach": {
+        "name": "luis enrique"
+    },
+    "players": [
+        [
+            {
+                "name": "keylor navas",
+                "position": "Gardien",
+                "number": 1,
+                "nationality": "Costa Rica",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/CRC.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/54/89854.jpg"
+            },
+            {
+                "name": "alexandre letellier",
+                "position": "Gardien",
+                "number": 30,
+                "nationality": "France",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/FRA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/68/36968.jpg"
+            },
+            {
+                "name": "louis mouquet",
+                "position": "Gardien",
+                "number": 70,
+                "nationality": "France",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/FRA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/squad_default_img.png"
+            },
+            {
+                "name": "arnau tenas",
+                "position": "Gardien",
+                "number": 80,
+                "nationality": "Espagne",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/ESP.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/00/101500.jpg"
+            },
+            {
+                "name": "gianluigi donnarumma",
+                "position": "Gardien",
+                "number": 99,
+                "nationality": "Italie",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/ITA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/48/93848.jpg"
+            },
+            {
+                "name": "sergio rico",
+                "position": "Gardien",
+                "number": null,
+                "nationality": "Espagne",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/ESP.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/squad_default_img.png"
+            },
+            {
+                "name": "achraf hakimi",
+                "position": "Défenseur",
+                "number": 2,
+                "nationality": "Maroc",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/MAR.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/40/93940.jpg"
+            },
+            {
+                "name": "presnel kimpembe",
+                "position": "Défenseur",
+                "number": 3,
+                "nationality": "France",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/FRA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/09/16809.jpg"
+            },
+            {
+                "name": "marquinhos",
+                "position": "Défenseur",
+                "number": 5,
+                "nationality": "Brésil",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/BRE.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/82/57282.jpg"
+            },
+            {
+                "name": "lucas hernandez",
+                "position": "Défenseur",
+                "number": 21,
+                "nationality": "France",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/FRA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/21/101121.jpg"
+            },
+            {
+                "name": "nuno mendes",
+                "position": "Défenseur",
+                "number": 25,
+                "nationality": "Portugal",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/POR.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/30/94930.jpg"
+            },
+            {
+                "name": "nordi mukiele",
+                "position": "Défenseur",
+                "number": 26,
+                "nationality": "France",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/FRA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/61/58961.jpg"
+            },
+            {
+                "name": "lucas beraldo",
+                "position": "Défenseur",
+                "number": 35,
+                "nationality": "Brésil",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/BRE.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/97/101997.jpg"
+            },
+            {
+                "name": "milan škriniar",
+                "position": "Défenseur",
+                "number": 37,
+                "nationality": "Slovaquie",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/SVQ.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/71/101171.jpg"
+            },
+            {
+                "name": "layvin kurzawa",
+                "position": "Défenseur",
+                "number": 97,
+                "nationality": "France",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/FRA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/50/17550.jpg"
+            },
+            {
+                "name": "manuel ugarte",
+                "position": "Milieu",
+                "number": 4,
+                "nationality": "Uruguay",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/URU.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/10/101210.jpg"
+            },
+            {
+                "name": "fabian ruiz",
+                "position": "Milieu",
+                "number": 8,
+                "nationality": "Espagne",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/ESP.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/34/100334.jpg"
+            },
+            {
+                "name": "danilo pereira",
+                "position": "Milieu",
+                "number": 15,
+                "nationality": "Portugal",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/POR.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/92/92492.jpg"
+            },
+            {
+                "name": "vitinha",
+                "position": "Milieu",
+                "number": 17,
+                "nationality": "Portugal",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/POR.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/96/98896.jpg"
+            },
+            {
+                "name": "lee kang-in",
+                "position": "Milieu",
+                "number": 19,
+                "nationality": "République de Corée",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/CSU.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/21/101421.jpg"
+            },
+            {
+                "name": "carlos soler",
+                "position": "Milieu",
+                "number": 28,
+                "nationality": "Espagne",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/ESP.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/48/100348.jpg"
+            },
+            {
+                "name": "warren zaïre-emery",
+                "position": "Milieu",
+                "number": 33,
+                "nationality": "France",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/FRA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/79/86879.jpg"
+            },
+            {
+                "name": "kylian mbappe",
+                "position": "Attaquant",
+                "number": 7,
+                "nationality": "France",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/FRA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/21/56621.jpg"
+            },
+            {
+                "name": "gonçalo ramos",
+                "position": "Attaquant",
+                "number": 9,
+                "nationality": "Portugal",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/POR.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/67/101567.jpg"
+            },
+            {
+                "name": "ousmane dembele",
+                "position": "Attaquant",
+                "number": 10,
+                "nationality": "France",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/FRA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/82/36082.jpg"
+            },
+            {
+                "name": "marco asensio",
+                "position": "Attaquant",
+                "number": 11,
+                "nationality": "Espagne",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/ESP.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/88/101088.jpg"
+            },
+            {
+                "name": "randal kolo muani",
+                "position": "Attaquant",
+                "number": 23,
+                "nationality": "France",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/FRA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/94/71194.jpg"
+            },
+            {
+                "name": "bradley barcola",
+                "position": "Attaquant",
+                "number": 29,
+                "nationality": "France",
+                "nationalityFlag": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Country/FRA.jpg",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/45/81445.jpeg"
+            }
+        ]
+    ]
+}
