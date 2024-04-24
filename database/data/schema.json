@@ -2,12 +2,10 @@
     {
         "name": "Paris Saint-Germain",
         "logo": "https://upload.wikimedia.org/wikipedia/fr/thumb/8/86/Paris_Saint-Germain_Logo.svg/1280px-Paris_Saint-Germain_Logo.svg.png",
-        "stade" : {
+        "stadium" : {
             "name": "Parc des Princes",
-            "address": "24 Rue du Commandant Guilbaud, 75016 Paris",
             "capacity": 48712,
-            "city": "Paris",
-            "country": "France"
+            "city": "Paris"
         },
         "coach": {
             "name": "Mauricio Pochettino"
