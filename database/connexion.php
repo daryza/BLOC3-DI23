@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once "create.php";
+require_once "insert.php";
 
 // Load .env file
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
@@ -32,6 +33,7 @@ function checkExist($db, $dbName) {
         // Database does not exist, create it
         echo "Database does not exist, creating it...";
         createDB($db, $dbName);
+        addData($db, $dbName);
     } else {
         $db->exec("USE ".$dbName);
     }

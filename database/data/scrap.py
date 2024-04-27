@@ -8,8 +8,6 @@ urlLigue1Club = "https://www.ligue1.fr/clubs/effectif?id="
 urlLigue1Accueil = "https://www.ligue1.fr"
 urlStadium = "https://www.deux-zero.com/ligue-1/stades/edition/2023-2024"
 
-response = requests.get(urlLigue1Club)
-soup = BeautifulSoup(response.text, "html.parser")
 
 responseClassement = requests.get(urlLigue1Accueil + "/classement")
 soupClassement = BeautifulSoup(responseClassement.text, "html.parser")
@@ -17,14 +15,18 @@ soupClassement = BeautifulSoup(responseClassement.text, "html.parser")
 responseStadium = requests.get(urlStadium)
 soupStadium = BeautifulSoup(responseStadium.text, "html.parser")
 
+
 def getClubNameOnClassementPage():
     clubs = soupClassement.find_all("div", class_="GeneralStats-item--club")
     clubList = []
     for club in clubs:
         clubList.append(
-            unidecode(club.find("span", class_="desktop-item").text.lower().replace(" ", "-"))
+            unidecode(
+                club.find("span", class_="desktop-item").text.lower().replace(" ", "-")
+            )
         )
     return clubList
+
 
 def getStadiumName(clubName):
     return (
@@ -35,10 +37,24 @@ def getStadiumName(clubName):
         .text.lower()
     )
 
+
+def getStadiumImage(clubName):
+    return (
+        BeautifulSoup(
+            requests.get(urlLigue1Accueil + "/clubs?id=" + clubName).text, "html.parser"
+        )
+        .find("img", class_="CompetitionClubStadium-image")
+        .get("src")
+    )
+
+
 def getStadiumCapacity(stadiumName):
     if stadiumName == "stade de la mosson et du mondial 98":
         stadiumName = "stade de la mosson - mondial 98"
-    if stadiumName != "stade bollaert-delelis" and stadiumName != "stade saint-symphorien":
+    if (
+        stadiumName != "stade bollaert-delelis"
+        and stadiumName != "stade saint-symphorien"
+    ):
         stadiumName = re.sub(r"(?<=\w)-(?=\w)", " ", stadiumName)
         stadiumName = stadiumName.replace("–", "-")
     if stadiumName == "stade de la beaujoire louis fonteneau":
@@ -56,11 +72,18 @@ def getStadiumCapacity(stadiumName):
             td_affluence = re.sub(r"\D", "", td_affluence)
             return td_affluence, td_ville
 
+
 def getStadium(clubName):
     stadiumName = getStadiumName(clubName)
     affluence, ville = getStadiumCapacity(stadiumName)
-    stadium = {"name": stadiumName, "capacity": int(affluence), "city": ville.lower()}
+    stadium = {
+        "name": stadiumName,
+        "capacity": int(affluence),
+        "city": ville.lower(),
+        "image": urlLigue1Accueil + getStadiumImage(clubName),
+    }
     return stadium
+
 
 def getClubName():
     return soup.find("h1", id="ClubPageNameClub").text.lower()
@@ -103,6 +126,7 @@ def getPlayers():
         )
     return playerList
 
+
 club_names = getClubNameOnClassementPage()
 print("liste des clubs: ", club_names)
 with open("data.json", "w", encoding="utf-8") as file:
@@ -118,7 +142,7 @@ with open("data.json", "w", encoding="utf-8") as file:
             "logo": getClubLogo(),
             "stadium": getStadium(club_name),
             "coach": getCoachName(),
-            "players": [getPlayers()],
+            "players": getPlayers(),
         }
         print("club_data: ", club_data)
         print("====================================")

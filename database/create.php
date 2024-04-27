@@ -1,29 +1,32 @@
 <?php
 function createDB($db, $dbName) {
     $tables = [
-        "entraineur" => "CREATE TABLE IF NOT EXISTS entraineur (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            nom VARCHAR(255) NOT NULL,
-            prenom VARCHAR(255) NOT NULL
-        )",
         "entraineur_poste" => "CREATE TABLE IF NOT EXISTS entraineur_poste (
             id INT AUTO_INCREMENT PRIMARY KEY,
             poste VARCHAR(255) NOT NULL
         )",
         "stade" => "CREATE TABLE IF NOT EXISTS stade (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            adresse VARCHAR(255) NOT NULL,
             nom VARCHAR(255) NOT NULL,
             capacite INT NOT NULL,
             ville VARCHAR(255) NOT NULL,
-            pays VARCHAR(255) NOT NULL
+            image VARCHAR(255) NOT NULL
         )",
         "club" => "CREATE TABLE IF NOT EXISTS club (
             id INT AUTO_INCREMENT PRIMARY KEY,
             stade_id INT NOT NULL,
             nom VARCHAR(255) NOT NULL,
+            logo VARCHAR(255) NOT NULL,
             FOREIGN KEY (stade_id) REFERENCES stade(id)
         )",
+        "entraineur" => "CREATE TABLE IF NOT EXISTS entraineur (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            entraineur_poste_id INT NOT NULL,
+            club_id INT NOT NULL,
+            nom VARCHAR(255) NOT NULL,
+            FOREIGN KEY (club_id) REFERENCES club(id),
+            FOREIGN KEY (entraineur_poste_id) REFERENCES entraineur_poste(id)
+                )",
         "joueur_poste" => "CREATE TABLE IF NOT EXISTS joueur_poste (
             id INT AUTO_INCREMENT PRIMARY KEY,
             poste VARCHAR(255) NOT NULL
@@ -33,8 +36,7 @@ function createDB($db, $dbName) {
             club_id INT NOT NULL,
             joueur_poste_id INT NOT NULL,
             nom VARCHAR(255) NOT NULL,
-            prenom VARCHAR(255) NOT NULL,
-            numero INT NOT NULL,
+            numero INT,
             FOREIGN KEY (club_id) REFERENCES club(id),
             FOREIGN KEY (joueur_poste_id) REFERENCES joueur_poste(id)
         )",
