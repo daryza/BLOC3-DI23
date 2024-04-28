@@ -33,7 +33,7 @@ function checkExist($db, $dbName) {
         // Database does not exist, create it
         echo "Database does not exist, creating it...";
         createDB($db, $dbName);
-        addData($db, $dbName);
+        addData($db);
     } else {
         $db->exec("USE ".$dbName);
     }

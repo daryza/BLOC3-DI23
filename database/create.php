@@ -72,9 +72,7 @@ function createDB($db, $dbName) {
         )",
         "arbitre" => "CREATE TABLE IF NOT EXISTS arbitre (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            nom VARCHAR(255) NOT NULL,
-            prenom VARCHAR(255) NOT NULL,
-            nationalite VARCHAR(255) NOT NULL
+            nom VARCHAR(255) NOT NULL
         )",
         "preparation_match_arbitre" => "CREATE TABLE IF NOT EXISTS preparation_match_arbitre (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -149,6 +147,17 @@ function createDB($db, $dbName) {
             carton_id INT NOT NULL,
             FOREIGN KEY (resultat_match_id) REFERENCES resultat_match(id),
             FOREIGN KEY (carton_id) REFERENCES carton(id)
+        )",
+        "utilisateur" => "CREATE TABLE IF NOT EXISTS utilisateur (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            pseudo VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            mot_de_passe VARCHAR(255) NOT NULL,
+            role VARCHAR(255) NOT NULL,
+            equipe_favorite_id INT,
+            UNIQUE (pseudo),
+            UNIQUE (email),
+            FOREIGN KEY (equipe_favorite_id) REFERENCES club(id)
         )",
     ];
     $db->exec("CREATE DATABASE ".$dbName);

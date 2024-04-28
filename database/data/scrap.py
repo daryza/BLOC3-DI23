@@ -155,3 +155,37 @@ with open("data.json", "w", encoding="utf-8") as file:
             indent=4,
         )
     )
+
+
+def getArbitre():
+    arbitre_paragraph = (
+        BeautifulSoup(
+            requests.get(
+                urlLigue1Accueil
+                + "/Articles/Actu/2023/06/14/arbitres-l1-saison-2023-2024"
+            ).text,
+            "html.parser",
+        )
+        .find("div", class_="field-article field-article")
+        .find_all("p")[4]
+    )
+    arbitre_text = arbitre_paragraph.get_text().splitlines()[1:]
+    arbitresArray = []
+    for arbitre in arbitre_text[0].split(","):
+        arbitresArray.append(arbitre.strip())
+    return arbitresArray
+
+
+with open("data_arbitre.json", "w", encoding="utf-8") as file:
+    data_arbitre = []
+    for arbitre in getArbitre():
+        data_arbitre.append({
+            "name": arbitre,
+        })
+    file.write(
+        json.dumps(
+            data_arbitre,
+            ensure_ascii=False,
+            indent=4,
+        )
+    )

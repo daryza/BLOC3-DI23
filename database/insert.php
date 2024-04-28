@@ -1,24 +1,19 @@
 <?php
-//$json = file_get_contents('data/data.json');
-//$data = json_decode($json, true);
-
-// echo "<pre>";
-// print_r($data);
-//$stadiumName = $data[2]['stadium']['name'];
-//echo $stadiumName;
-
-function addData($db, $dbName){
+function addData($db){
     $json = file_get_contents(__DIR__ . '/data/data.json');
     $data = json_decode($json, true);
-    addStadium($data, $db, $dbName);
-    addClub($data, $db, $dbName);
-    addCoachJob($db, $dbName);
-    addCoach($data, $db, $dbName);
-    addPlayerPosition($data, $db, $dbName);
-    addPlayer($data, $db, $dbName);
+    addStadium($data, $db);
+    addClub($data, $db);
+    addCoachJob($db);
+    addCoach($data, $db);
+    addPlayerPosition($data, $db);
+    addPlayer($data, $db);
+    addArbitre($db);
+    addCartonType($db);
+    addButType($db);
 }
 
-function addStadium($data, $db, $dbName) {
+function addStadium($data, $db) {
     //echo $data[2]['stadium']['name'];
     #Recuperation des données du stade
     foreach ($data as $key => $value) {
@@ -32,7 +27,7 @@ function addStadium($data, $db, $dbName) {
     }
 }
 
-function addClub($data, $db, $dbName) {
+function addClub($data, $db) {
     #Recuperation des données du club
     foreach ($data as $key => $value) {
         $stade_id = $db->query("SELECT id FROM stade WHERE nom = '".$value['stadium']['name']."'")->fetch();
@@ -45,7 +40,7 @@ function addClub($data, $db, $dbName) {
     }
 }
 
-function addCoachJob($db, $dbName) {
+function addCoachJob($db) {
     #Recuperation des données du poste de l'entraineur
     $sql = "INSERT INTO entraineur_poste (poste) VALUES (:poste1), (:poste2)";
     $req = $db->prepare($sql);
@@ -54,7 +49,7 @@ function addCoachJob($db, $dbName) {
     $req->execute();
 }
 
-function addCoach($data, $db, $dbName) {
+function addCoach($data, $db) {
     #Recuperation des données de l'entraineur
     $coach_job_id = $db->query("SELECT id FROM entraineur_poste WHERE poste = 'entraineur'")->fetch();
     foreach ($data as $key => $value) {
@@ -68,7 +63,7 @@ function addCoach($data, $db, $dbName) {
     }
 }
 
-function addPlayerPosition($data, $db, $dbName) {
+function addPlayerPosition($data, $db) {
     #Recuperation des données du poste du joueur
     $plyerPosition = [];
     foreach ($data as $key => $club) {
@@ -86,12 +81,13 @@ function addPlayerPosition($data, $db, $dbName) {
     }
 }
 
-function addPlayer($data, $db, $dbName) {
+function addPlayer($data, $db) {
     #Recuperation des données du joueur
     foreach ($data as $key => $club) {
         $club_id = $db->query("SELECT id FROM club WHERE nom = '".$club['name']."'")->fetch();
         foreach ($club['players'] as $key => $player) {
             $playerPosition_id = $db->query("SELECT id FROM joueur_poste WHERE poste = '".$player['position']."'")->fetch();
+
             $sql = "INSERT INTO joueur (club_id, joueur_poste_id, nom,numero) VALUES (:club_id, :joueur_poste_id, :nom, :numero)";
             $req = $db->prepare($sql);
             $req->bindValue(':club_id', $club_id['id'], PDO::PARAM_INT);
@@ -100,5 +96,39 @@ function addPlayer($data, $db, $dbName) {
             $req->bindValue(':numero', $player['number'], PDO::PARAM_INT);
             $req->execute();
         }
+    }
+}
+
+function addArbitre($db) {
+    #Recuperation des données de l'arbitre
+    $jsonArbitre = file_get_contents(__DIR__ . '/data/data_arbitre.json');
+    $dataArbitre = json_decode($jsonArbitre, true);
+    foreach ($dataArbitre as $key => $value) {
+        $sql = "INSERT INTO arbitre (nom) VALUES (:nom)";
+        $req = $db->prepare($sql);
+        $req->bindValue(':nom', $value['name'], PDO::PARAM_STR);
+        $req->execute();
+    }
+}
+
+function addCartonType($db) {
+    #Recuperation des données du type de carton
+    $cartonType = ["jaune", "rouge"];
+    foreach ($cartonType as $key => $value) {
+        $sql = "INSERT INTO carton_type (carton_type) VALUES (:carton_type)";
+        $req = $db->prepare($sql);
+        $req->bindValue(':carton_type', $value, PDO::PARAM_STR);
+        $req->execute();
+    }
+}
+
+function addButType($db) {
+    #Recuperation des données du type de but
+    $butType = ["penalty", "coup franc", "tête", "pied"];
+    foreach ($butType as $key => $value) {
+        $sql = "INSERT INTO but_type (but_type) VALUES (:but_type)";
+        $req = $db->prepare($sql);
+        $req->bindValue(':but_type', $value, PDO::PARAM_STR);
+        $req->execute();
     }
 }

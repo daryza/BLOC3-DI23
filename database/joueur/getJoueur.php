@@ -68,5 +68,5 @@ function getJoueurByClub($club) {
 
 
 
-$joueurs = getJoueurById(123);
+$joueurs = getJoueurById(25);
 var_dump($joueurs);
