@@ -16,7 +16,7 @@ function getJoueurs() {
 function getJoueurById($id) {
     $db = connexionDB();
     try {
-        $sql = "SELECT * FROM joueur WHERE id = :id";
+        $sql = "SELECT * FROM player WHERE id = :id";
         $req = $db->prepare($sql);
         $req->bindValue(':id', $id, PDO::PARAM_INT);
         $req->execute();

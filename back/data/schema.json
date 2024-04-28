@@ -16,7 +16,8 @@
                 "position": "Gardien",
                 "number": 1,
                 "nationality": "Costa Rica",
-                "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Costa_Rica.svg/1280px-Flag_of_Costa_Rica.svg.png"
+                "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Costa_Rica.svg/1280px-Flag_of_Costa_Rica.svg.png",
+                "photo": "https://www.ligue1.fr/-/media/Project/LFP/shared/Images/Players/2023-2024/54/89854.jpg" 
             }
         ]
     }
