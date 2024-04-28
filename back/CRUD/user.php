@@ -1,6 +1,14 @@
 <?php
-require_once './connexion.php';
+require_once '../connexion.php';
 
+/*
+Create = 12 -> 28
+Read = 31 -> 45
+Update = 48 -> 114
+Delete = 117 -> 131
+*/
+
+####################### CREATE #######################
 function addUser($userPseudo, $userPassword, $userEmail, $userFavoriteClub) {
     $db = connexionDB();
     try {
@@ -19,6 +27,7 @@ function addUser($userPseudo, $userPassword, $userEmail, $userFavoriteClub) {
     }
 }
 
+####################### READ #######################
 function getUserByPseudo($userPseudo) {
     $db = connexionDB();
     try {
@@ -35,6 +44,7 @@ function getUserByPseudo($userPseudo) {
     }
 }
 
+####################### UPDATE #######################
 function setUserPseudo($userId, $userNewPseudo){
     $db = connexionDB();
     try {
@@ -103,6 +113,7 @@ function setUserFavoriteClub($userId, $userNewFavoriteClub){
     }
 }
 
+####################### DELETE #######################
 function deleteUser($userId){
     $db = connexionDB();
     try {
