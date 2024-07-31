@@ -1,5 +1,5 @@
 <?php
-require_once '../connexion.php';
+require_once dirname(__DIR__) . '/connexion.php';
 
 /*
 Create = 12 -> 28
@@ -9,17 +9,19 @@ Delete = 117 -> 131
 */
 
 ####################### CREATE #######################
-function addUser($userPseudo, $userPassword, $userEmail, $userFavoriteClub) {
+function addUser($userPseudo, $userPassword, $userFavoriteClub) {
     $db = connexionDB();
     try {
-        $sql = "INSERT INTO user (user_pseudo, user_password, user_email, user_role, user_favorite_club_id) VALUES (:user_pseudo, :user_password, :user_email, :user_role, :user_favorite_club_id)";
+        $sql = "INSERT INTO user (user_pseudo, user_password, user_role, user_favorite_club_id) VALUES (:user_pseudo, :user_password, :user_role, :user_favorite_club_id)";
         $req = $db->prepare($sql);
         $req->bindValue(':user_pseudo', $userPseudo, PDO::PARAM_STR);
         $req->bindValue(':user_password', $userPassword, PDO::PARAM_STR);
-        $req->bindValue(':user_email', $userEmail, PDO::PARAM_STR);
         $req->bindValue(':user_role', 'supporter', PDO::PARAM_STR);
         $req->bindValue(':user_favorite_club_id', $userFavoriteClub, PDO::PARAM_INT);
         $req->execute();
+
+        // Retrun the ID of the new user created
+        return $db->lastInsertId();
     } catch (Exception $e) {
         echo 'Erreur : ' . $e->getMessage();
     } finally {
@@ -35,7 +37,7 @@ function getUserByPseudo($userPseudo) {
         $req = $db->prepare($sql);
         $req->bindValue(':user_pseudo', $userPseudo, PDO::PARAM_STR);
         $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        return $req->fetch(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
         echo 'Erreur : ' . $e->getMessage();
         return null;
@@ -44,6 +46,21 @@ function getUserByPseudo($userPseudo) {
     }
 }
 
+function getUserById($userId) {
+    $db = connexionDB();
+    try {
+        $sql = "SELECT * FROM user WHERE id = :id";
+        $req = $db->prepare($sql);
+        $req->bindValue(':id', $userId, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        echo 'Erreur : ' . $e->getMessage();
+        return null;
+    } finally {
+        $db = null;
+    }
+}
 ####################### UPDATE #######################
 function setUserPseudo($userId, $userNewPseudo){
     $db = connexionDB();

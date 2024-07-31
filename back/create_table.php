@@ -73,10 +73,10 @@ function addTable($db, $dbName) {
         )",
         "pre_match_team_lineup_versus" => "CREATE TABLE IF NOT EXISTS pre_match_team_lineup_versus (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            home_team_lineup_id INT NOT NULL,
-            away_team_lineup_id INT NOT NULL,
+            home_team_lineup_id INT NULL,
+            visitor_team_lineup_id INT NULL,
             FOREIGN KEY (home_team_lineup_id) REFERENCES team_lineup(id),
-            FOREIGN KEY (away_team_lineup_id) REFERENCES team_lineup(id)
+            FOREIGN KEY (visitor_team_lineup_id) REFERENCES team_lineup(id)
         )",
         "official" => "CREATE TABLE IF NOT EXISTS official (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -90,9 +90,13 @@ function addTable($db, $dbName) {
         )",
         "pre_match" => "CREATE TABLE IF NOT EXISTS pre_match (
             id INT AUTO_INCREMENT PRIMARY KEY,
+            home_team_id INT NOT NULL,
+            visitor_team_id INT NOT NULL,
             pre_match_team_lineup_versus_id INT NOT NULL,
             pre_match_official_lineup_id INT NOT NULL,
             date DATETIME NOT NULL,
+            FOREIGN KEY (home_team_id) REFERENCES club(id),
+            FOREIGN KEY (visitor_team_id) REFERENCES club(id),
             FOREIGN KEY (pre_match_team_lineup_versus_id) REFERENCES pre_match_team_lineup_versus(id),
             FOREIGN KEY (pre_match_official_lineup_id) REFERENCES pre_match_official_lineup(id)
         )",
@@ -161,11 +165,9 @@ function addTable($db, $dbName) {
             id INT AUTO_INCREMENT PRIMARY KEY,
             user_favorite_club_id INT,
             user_pseudo VARCHAR(255) NOT NULL,
-            user_email VARCHAR(255) NOT NULL,
             user_password VARCHAR(255) NOT NULL,
-            user_role VARCHAR(255) NOT NULL,
+            user_role VARCHAR(255) NOT NULL DEFAULT 'supporter',
             UNIQUE (user_pseudo),
-            UNIQUE (user_email),
             FOREIGN KEY (user_favorite_club_id) REFERENCES club(id)
         )",
     ];

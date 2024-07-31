@@ -1,5 +1,5 @@
 <?php
-require_once '../connexion.php';
+require_once dirname(__DIR__) . '/connexion.php';
 
 /*
 Create = /
@@ -83,8 +83,8 @@ function getAllPlayerByPosition($playerPosition) {
         echo 'Erreur : ' . $e->getMessage();
     }
 }
-echo "<pre>";
-var_dump(getAllPlayerByPosition('gardien'));
+//echo "<pre>";
+//var_dump(getAllPlayerByPosition('gardien'));
 
 // Cherche un joueur par son poste et son club et retourne un tableau de joueurs
 function getPlayerByPostionAndClub($playerPosition, $clubId) {
@@ -116,4 +116,4 @@ function setPlayerClub($player_id, $new_club_id) {
         echo 'Erreur : ' . $e->getMessage();
     }
 }
-//setPlayerClub(1, 2);
+//setPlayerClub(1, 2);$$

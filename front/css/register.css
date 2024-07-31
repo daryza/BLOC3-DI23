@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#main_container {
+    background-image: url(../assets/Ecran_Ligue_1.png);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+
+.pointer {
+    cursor: pointer;
+} 
+
+form {
+    margin: auto;
+}
+
+.form_item {
+    display: flex;
+    margin: auto auto 40px auto;
+    flex-direction: column;
+    width: 60vw;
+}
+
+label {
+    align-self: flex-start;
+    font-size: 30px;
+    font-weight: 600;
+    background-color: white;
+    width: 50%;
+    text-align: center;
+    padding: 13px 0 15px 0;
+    border-radius: 5px;
+}
+
+input, select{
+    align-self: flex-end;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px 0 10px 0;
+    margin: 2px 10px 0 0;
+    width: 68%;
+    border-radius: 5px;
+}
+
+option {
+    font-size: 20px;
+}
+
+.password_container {
+    margin-bottom: 0;
+}
+
+#submit {
+    display: flex;
+    margin: 40px auto 0 auto;
+    justify-content: center;
+    background-color: #00A45E;
+    color: #011939;
+    font-size: 40px;
+    font-weight: 600;
+    padding: 25px 0;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 70%;
+}
+
+#submit:disabled {
+    background-color: #B0B0B0;
+    color: #707070;
+    cursor: not-allowed;
+}
+
+.invalid {
+    color: red;
+    border: 2px solid red;
+}
+
+.invalid:focus {
+    outline: none;
+}
