@@ -79,6 +79,7 @@ function setUserPseudo($userId, $userNewPseudo){
     }
 }
 
+
 function setUserPassword($userId, $userNewPassword){
     $db = connexionDB();
     try {
