@@ -29,8 +29,14 @@
     <?php if ($user_role === 'admin') { ?>
         <a href="./create_match.php">Créer un match</a>
     <?php } ?>
+    <?php if ($user_role === null) { ?>
+        <a href="./login.php">Se connecter</a>
+    <?php } ?>
     <div>
         <a href="./register.php">S'inscrire</a>
     </div>
+    <?php if ($user_role !== null) { ?>
+        <a href="./account_management.php">Gestion du compte</a>
+    <?php } ?>
 </body>
 </html>

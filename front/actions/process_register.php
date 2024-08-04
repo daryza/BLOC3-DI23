@@ -8,8 +8,9 @@
         $userPseudo = htmlspecialchars($_POST['pseudo']);
         $userPasswordHashed = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT); // Hash the password
         $favoriteClubId = getClubIdByName(htmlspecialchars($_POST['favorite_club']));
+        echo "Club id: $favoriteClubId";
 
-        $userId = addUser($userPseudo, $userPasswordHashed, $favoriteClub);	
+        $userId = addUser($userPseudo, $userPasswordHashed, $favoriteClubId);	
 
         if ($userId) {
             $user = getUserById($userId);
@@ -28,7 +29,6 @@
         // Invalid request
         $_SESSION['message'] = 'Requête invalide.';
         header('Location: ../register.php');
-        //exit();
     }
     exit();
 ?>

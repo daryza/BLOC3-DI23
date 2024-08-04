@@ -70,24 +70,7 @@ function setUserPseudo($userId, $userNewPseudo){
         $req->bindValue(':user_pseudo', $userNewPseudo, PDO::PARAM_STR);
         $req->bindValue(':id', $userId, PDO::PARAM_INT);
         $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
-    } catch (Exception $e) {
-        echo 'Erreur : ' . $e->getMessage();
-        return null;
-    } finally {
-        $db = null;
-    }
-}
-
-function setUserEmail($userId, $userNewEmail){
-    $db = connexionDB();
-    try {
-        $sql = "UPDATE user SET user_email = :user_email WHERE id = :id";
-        $req = $db->prepare($sql);
-        $req->bindValue(':user_email', $userNewEmail, PDO::PARAM_STR);
-        $req->bindValue(':id', $userId, PDO::PARAM_INT);
-        $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        return $req->fetch(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
         echo 'Erreur : ' . $e->getMessage();
         return null;
@@ -104,7 +87,7 @@ function setUserPassword($userId, $userNewPassword){
         $req->bindValue(':user_password', $userNewPassword, PDO::PARAM_STR);
         $req->bindValue(':id', $userId, PDO::PARAM_INT);
         $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        return $req->fetch(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
         echo 'Erreur : ' . $e->getMessage();
         return null;
@@ -121,7 +104,7 @@ function setUserFavoriteClub($userId, $userNewFavoriteClub){
         $req->bindValue(':user_favorite_club_id', $userNewFavoriteClub, PDO::PARAM_INT);
         $req->bindValue(':id', $userId, PDO::PARAM_INT);
         $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        return $req->fetch(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
         echo 'Erreur : ' . $e->getMessage();
         return null;
@@ -138,10 +121,10 @@ function deleteUser($userId){
         $req = $db->prepare($sql);
         $req->bindValue(':id', $userId, PDO::PARAM_INT);
         $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        return true;
     } catch (Exception $e) {
         echo 'Erreur : ' . $e->getMessage();
-        return null;
+        return false;
     } finally {
         $db = null;
     }
