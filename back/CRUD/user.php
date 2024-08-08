@@ -24,6 +24,7 @@ function addUser($userPseudo, $userPassword, $userFavoriteClub) {
         return $db->lastInsertId();
     } catch (Exception $e) {
         echo 'Erreur : ' . $e->getMessage();
+        return null;
     } finally {
         $db = null;
     }

@@ -52,10 +52,9 @@ function addTable($db, $dbName) {
             id INT AUTO_INCREMENT PRIMARY KEY,
             player_id INT NOT NULL,
             player_selected_position_name_id INT NOT NULL,
-            player_selected_starting BOOLEAN NOT NULL,
             player_selected_captain BOOLEAN NOT NULL,
             player_selected_captain_substitute BOOLEAN NOT NULL,
-            player_selected_number INT NOT NULL,
+            player_selected_number INT,
             FOREIGN KEY (player_id) REFERENCES player(id),
             FOREIGN KEY (player_selected_position_name_id) REFERENCES player_position(id)
         )",

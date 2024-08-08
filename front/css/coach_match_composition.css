@@ -1,0 +1,277 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8;
+    font-family: 'Roboto', sans-serif;
+}
+
+button,
+select {
+    cursor: pointer;
+}
+
+.next_match_card {
+    display: flex;
+    width: 550px;
+    margin: 20px auto;
+    color: white;
+    background-color: #014273;
+    border-radius: 35px;
+}
+
+.logo_container {
+    display: flex;
+    margin: 10px 0;
+}
+
+.logo_container img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.info_container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.match_date,
+.match_stadium {
+    margin: 0 auto;
+    display: flex;
+}
+
+.info_item {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+h4.info_item {
+    margin: 0 5px 0 0;
+}
+
+span.info_item {
+    margin: auto 0;
+    padding: 2px 0;
+}
+
+h2 {
+    text-align: center;
+    font-size: 30px;
+}
+
+/* --------------------- Left container --------------------- */
+#main_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+#left_container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.player_selection_container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 0 20px 0;
+}
+
+.selection {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 20px 0;
+}
+
+.add_btn {
+    width: 220px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    border-radius: 50px;
+    padding: 10px 0 10px 0;
+    margin: 0 auto 12px auto;
+    border: none;
+}
+
+select {
+    width: 180px;
+    font-size: 13.33px;
+    padding: 5px 0 5px 0;
+    border-radius: 50px;
+    text-align: center;
+    margin: 0 auto 8px auto;
+    background-color: #a5bcce;
+    color: #000000;
+}
+
+optgroup {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+option {
+    background-color: #a5bcce;
+}
+
+#add_player_btn {
+    background-color: #00a45e;
+}
+
+#add_player_btn:hover {
+    background-color: #007a45;
+}
+
+#delete_player_btn {
+    background-color: #db2c1d;
+}
+
+#delete_player_btn:hover {
+    background-color: #7c150a;
+}
+
+#add_captain_btn,
+#add_sub_captain_btn {
+    background-color: #014273;
+}
+
+#add_captain_btn:hover,
+#add_sub_captain_btn:hover {
+    background-color: #011939;
+}
+
+
+
+
+
+
+
+#middle_container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    color : #011939;
+    margin: 0 0 20px 0;
+}
+
+#soccer_field_container {
+    position: relative;
+    margin: 0;
+}
+
+#soccer_field_image {
+    width: 100%;
+    height: 100%;
+}
+
+
+.position_container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* Use space-evenly to distribute space evenly */
+    align-items: center; /* Center items vertically */
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    width: 25px;
+    height: 100%;
+    /* border: 2px solid white; */
+    cursor: pointer;
+    top: 16px;
+}
+
+#guardian_container {
+    left: 72px;
+}
+
+#defender_container {
+    left: 177px;
+}
+
+#midfielder_container {
+    left: 305px;
+}
+
+#attacker_container {
+    left: 438px;
+}
+
+.soccer_field_players {
+    display: flex;
+    flex-direction: column;
+}
+
+.soccer_field_items {
+    display: flex;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin: 0 auto 0 auto;
+    background-color: #C62E29;
+    cursor: pointer;
+}
+
+.soccer_field_player_name {
+    text-align: center;
+    font-size: 15px;
+    color: black;
+    font-weight: 700;
+}
+
+#right_container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    width: 70%;
+    margin: auto;
+}
+
+#submit_btn {
+    width: 100%;
+    font-size: 25px;
+    background-color: #00a45e;
+    color: #011939;
+    border-radius: 30px;
+    padding: 20px 0 20px 0;
+    font-weight: 700;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin: 10px 0 0 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #011939;
+}
+
+li span {
+    font-weight: 100;
+}

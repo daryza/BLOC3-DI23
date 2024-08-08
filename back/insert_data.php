@@ -67,6 +67,8 @@ function addCoach($data, $db) {
 function addPlayerPosition($data, $db) {
     #Recuperation des données du poste du joueur
     $plyerPosition = [];
+    // J'ajoute le poste de ramplaçant avavnt les autres postes
+    $plyerPosition[] = "Remplaçant";
     foreach ($data as $key => $club) {
         foreach ($club['players'] as $key => $player) {
             if (!in_array($player['position'], $plyerPosition)) {

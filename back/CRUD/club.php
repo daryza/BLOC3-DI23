@@ -36,6 +36,20 @@ function getAllClubsName() {
 //echo "<pre>";
 //var_dump(getAllClubs());
 
+function getClubNameById($clubId) {
+    $db = connexionDB();
+    try {
+        $sql = "SELECT club_name FROM club WHERE id = :clubId";
+        $req = $db->prepare($sql);
+        $req->bindValue(':clubId', $clubId, PDO::PARAM_INT);
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+        return $result['club_name'];
+    } catch (Exception $e) {
+        echo 'Erreur : ' . $e->getMessage();
+    }
+}
+
 function getClubIdByName($clubName) {
     $db = connexionDB();
     try {

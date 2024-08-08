@@ -27,16 +27,27 @@
 </head>
 <body>
     <?php if ($user_role === 'admin') { ?>
-        <a href="./create_match.php">Créer un match</a>
+        <div>
+            <a href="./create_match.php">Créer un match</a>
+        </div>
     <?php } ?>
     <?php if ($user_role === null) { ?>
-        <a href="./login.php">Se connecter</a>
+        <div>
+            <a href="./login.php">Se connecter</a>
+        </div>
     <?php } ?>
-    <div>
-        <a href="./register.php">S'inscrire</a>
-    </div>
+        <div>
+            <a href="./register.php">S'inscrire</a>
+        </div>
     <?php if ($user_role !== null) { ?>
-        <a href="./account_management.php">Gestion du compte</a>
+        <div>
+            <a href="./account_management.php">Gestion du compte</a>
+        </div>
+    <?php } ?>
+    <?php if ($user_role === 'coach') { ?>
+        <div>
+            <a href="./coach_management.php">Gérer mon équipe</a>
+        </div>
     <?php } ?>
 </body>
 </html>

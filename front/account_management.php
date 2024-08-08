@@ -54,25 +54,31 @@
             </form>
         </div>
         <!-- favorite club form -->
-        <div  class="form_container">
-            <form  action="./actions/process_account_management.php" method="POST">
-                <input type="hidden" name="form_type" value="favorite_club_form">
-                <div class="form_item">
-                    <label for="favorite_club" class="pointer" >Changer d'équipe favorite</label>
-                    <select name="favorite_club" id="favorite_club" class="pointer" required>
-                        <option value="" disabled selected>Choisir une équipe favorite</option>
-                        <?php foreach ($clubs as $club) {
-                            $clubName = htmlspecialchars($club['club_name']); // Encode HTML special characters
-                            $formattedClubName = ucwords($clubName); // Capitalize the first letter of each word
-                            echo '<option value="' . $clubName . '">' . $formattedClubName . '</option>';
-                        } ?>
-                    </select>
-                </div>
-                <div class="submit_container">
-                    <button id="favorite_club_submit" type="submit" class="submit">Valider équipe</button>
-                </div>
-            </form>
-        </div>
+        <?php
+        if ($_SESSION['user_role'] !== 'coach') {
+            ?>
+            <div  class="form_container">
+                <form  action="./actions/process_account_management.php" method="POST">
+                    <input type="hidden" name="form_type" value="favorite_club_form">
+                    <div class="form_item">
+                        <label for="favorite_club" class="pointer" >Changer d'équipe favorite</label>
+                        <select name="favorite_club" id="favorite_club" class="pointer" required>
+                            <option value="" disabled selected>Choisir une équipe favorite</option>
+                            <?php foreach ($clubs as $club) {
+                                $clubName = htmlspecialchars($club['club_name']); // Encode HTML special characters
+                                $formattedClubName = ucwords($clubName); // Capitalize the first letter of each word
+                                echo '<option value="' . $clubName . '">' . $formattedClubName . '</option>';
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="submit_container">
+                        <button id="favorite_club_submit" type="submit" class="submit">Valider équipe</button>
+                    </div>
+                </form>
+            </div>
+            <?php
+        }
+        ?>
         <!-- delete account form -->
         <div  class="form_container">
             <form  action="./actions/process_account_management.php" method="POST">

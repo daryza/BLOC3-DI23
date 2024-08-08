@@ -70,6 +70,19 @@ function getPlayerByClub($clubName) {
 //echo "<pre>";
 //var_dump(getPlayerByClub('paris saint-germain'));
 
+function getPlayerByClubId($clubId) {
+    $db = connexionDB();
+    try {
+        $sql = "SELECT *, player.id FROM player INNER JOIN nationality ON player.nationality_id = nationality.id INNER JOIN player_position ON player.player_position_name_id = player_position.id INNER JOIN club ON player.club_id = club.id WHERE club.id = :clubId";
+        $req = $db->prepare($sql);
+        $req->bindValue(':clubId', $clubId, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        echo 'Erreur : ' . $e->getMessage();
+    }
+}
+
 // Cherche un joueur par son poste et retourne un tableau de joueurs
 function getAllPlayerByPosition($playerPosition) {
     $db = connexionDB();

@@ -1,9 +1,10 @@
 <?php
-require_once '../back/CRUD/club.php';
-require_once '../back/CRUD/official.php';
 session_start();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    require_once '../back/CRUD/club.php';
+    require_once '../back/CRUD/official.php';
+    
     $user_role = $_SESSION['user_role'];
     if ($user_role !== 'admin') {
         $_SESSION['message'] = "Vous n'êtes pas autorisé à accéder à cette page.";
