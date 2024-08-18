@@ -1,4 +1,3 @@
-/* Définition des polices avec @font-face */
 @font-face {
     font-family: 'Garet';
     src: url('/BLOC3-DI23/front/assets/fonts/Garet-Book.ttf') format('truetype'),
@@ -8,7 +7,7 @@
 }
 
 @font-face {
-    font-family: 'Garet';
+    font-family: 'Garet-Heavy';
     src: url('/BLOC3-DI23/front/assets/fonts/Garet-Heavy.ttf') format('truetype'),
         url('/BLOC3-DI23/front/assets/fonts/Garet-Heavy.otf') format('opentype');
     font-weight: bold;
@@ -24,7 +23,6 @@
     font-style: normal;
 }
 
-
 body {
     font-family: 'Garet', sans-serif;
     background-color: #f4f6f8;
@@ -32,27 +30,29 @@ body {
     padding: 0;
 }
 
-/* En-tête et barre de menu */
+header,
+.menu-bar,
+.player-banner,
+.player-info,
+.player-details {
+    margin: 0;
+    padding: 0;
+}
+
 header {
     background-color: #ffffff;
     border-bottom: none;
 }
 
-.menu-bar,
-.nav-links {
+.menu-bar {
     display: flex;
     align-items: center;
-    height: 75px;
-    margin: 0;
-    padding: 0;
     background-color: #ffffff;
+    height: 75px;
 }
 
-/* Logo du site */
 .logo {
     height: 100px;
-    margin: 0;
-    padding: 0;
 }
 
 .logo a {
@@ -64,24 +64,18 @@ header {
 .logo img {
     width: 100%;
     height: auto;
-    display: block;
     object-fit: cover;
-
 }
 
-/* Liens barre de menu */
 .nav-links {
     list-style: none;
+    display: flex;
+    align-items: center;
     gap: 20px;
     margin-left: 20px;
-    padding: 0;
+    height: 100%;
 }
 
-.nav-links li {
-    margin: 0;
-}
-
-/* Police des liens menus */
 .nav-links a {
     text-decoration: none;
     color: #000000;
@@ -89,7 +83,6 @@ header {
     font-weight: bold;
     font-size: 16px;
     line-height: 75px;
-    display: inline-block;
     padding: 0 10px;
 }
 
@@ -97,31 +90,19 @@ header {
     text-decoration: underline;
 }
 
-/* Nom et numéro du joueur */
 h1,
 h2,
 h3,
 .player-name,
 .player-number {
     font-family: 'Garet', sans-serif;
-    color: #f1c40f;
     margin-left: 0;
-    font-size: 18px;
+    color: #f1c40f;
+    font-size: 25px;
 }
 
-/* Banniere, infos joueur, et barre de menu */
-.player-banner,
-.player-details,
-.menu-bar,
-.player-info {
-    padding: 0;
-    margin: 0;
-}
-
-/* Bannière du joueur (fond bleu avec logo du club, nom, numéro) */
 .player-banner {
     background-image: url('/BLOC3-DI23/front/assets/banner.png');
-    /* Image de fond de la bannière */
     background-size: cover;
     background-position: center;
     color: #ffffff;
@@ -129,7 +110,6 @@ h3,
     flex-direction: column;
 }
 
-/* Conteneur logo club */
 .club-logo-container {
     display: flex;
     justify-content: flex-start;
@@ -137,35 +117,27 @@ h3,
     padding: 5px 15px 5px 5px;
 }
 
-/* Style logo du club */
 .club-logo {
     width: 80px;
     height: 80px;
-    border-radius: 5px;
 }
 
-/* Conteneur infos du joueur (nom et numéro) */
 .player-info {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-/* Nom du joueur */
 .player-name {
     text-align: left;
     padding-left: 20px;
-    /* Alignement gauche avec une marge */
 }
 
-/* Numéro du joueur */
 .player-number {
     text-align: right;
     margin-right: 20px;
-    /* Alignement droit avec une marge */
 }
 
-/* Détails du joueur (photo et statistiques) */
 .player-details {
     display: flex;
     justify-content: space-between;
@@ -173,7 +145,6 @@ h3,
     padding: 20px;
 }
 
-/* Conteneur de la photo du joueur */
 .player-photo {
     display: flex;
     align-items: stretch;
@@ -182,17 +153,14 @@ h3,
     width: 30%;
 }
 
-/* Style de la photo du joueur */
 .player-photo img {
     width: 100%;
     height: auto;
     border-radius: 5px;
     border: 1px solid #014175;
-    /* Bordure bleue autour de la photo */
     object-fit: cover;
 }
 
-/* Cadre contenant les informations du joueur (Nom, Club, etc.) */
 .player-stats {
     background-color: #014175;
     color: #ffffff;
@@ -205,22 +173,18 @@ h3,
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 0;
 }
 
-/* Paragraphes dans le cadre d'infos joueur */
 .player-stats p {
     margin: 5px 0;
     line-height: 1.2;
 }
 
-/* Drapeau après nationalité */
 .player-stats img {
     margin-left: 5px;
     vertical-align: middle;
 }
 
-/* Liens dans le cadre d'infos joueur */
 .player-stats a {
     color: #ffffff;
     text-decoration: none;
