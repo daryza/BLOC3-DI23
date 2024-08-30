@@ -140,7 +140,20 @@ function setPlayerClub($player_id, $new_club_id) {
 function getMatchsJoues($player_id) {
     $db = connexionDB();
     try {
-        $sql = "SELECT COUNT(*) as match_count FROM player_selected WHERE player_id = :player_id";
+        $sql = "
+            SELECT COUNT(DISTINCT pre_match.id) as match_count
+            FROM pre_match
+            INNER JOIN pre_match_team_lineup_versus 
+                ON pre_match.pre_match_team_lineup_versus_id = pre_match_team_lineup_versus.id
+            INNER JOIN team_lineup 
+                ON pre_match_team_lineup_versus.home_team_lineup_id = team_lineup.id 
+                OR pre_match_team_lineup_versus.visitor_team_lineup_id = team_lineup.id
+            INNER JOIN team_lineup_player_selected 
+                ON team_lineup.id = team_lineup_player_selected.team_lineup_id
+            INNER JOIN player_selected 
+                ON team_lineup_player_selected.player_selected_id = player_selected.id
+            WHERE player_selected.player_id = :player_id";
+        
         $req = $db->prepare($sql);
         $req->bindParam(':player_id', $player_id, PDO::PARAM_INT);
         $req->execute();
@@ -151,6 +164,7 @@ function getMatchsJoues($player_id) {
         return 0;
     }
 }
+
 
 function getButsMarques($player_id) {
     $db = connexionDB();
