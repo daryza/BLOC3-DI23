@@ -20,7 +20,7 @@ $user_favorite_club_id = $_SESSION['user_favorite_club_id'] ?? null;
             <li><a href="/BLOC3-DI23/front/enter_result.php">Renseigner résultat</a></li>
         <?php } elseif ($user_role === 'coach') { ?>
             <li><a href="/BLOC3-DI23/front/club.php?club_id=<?php echo htmlspecialchars($_SESSION['club_id']); ?>">Mon équipe</a></li>
-            <li><a href="/BLOC3-DI23/front/team_composition.php">Gérer mon équipe</a></li>
+            <li><a href="/BLOC3-DI23/front/coach_match_composition.php">Gérer mon équipe</a></li>
         <?php } elseif ($user_role) { ?>
             <li><a href="<?php echo $user_favorite_club_id ? "/BLOC3-DI23/front/club.php?club_id={$user_favorite_club_id}" : '/BLOC3-DI23/front/all_clubs.php'; ?>">Mon équipe</a></li>
         <?php } ?>
