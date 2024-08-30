@@ -36,18 +36,6 @@ function getAllClubsName() {
 //echo "<pre>";
 //var_dump(getAllClubs());
 
-function getAllClubSId() {
-    $db = connexionDB();
-    try {
-        $sql = "SELECT id FROM club ORDER BY club_name ASC";
-        $req = $db->prepare($sql);
-        $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
-    } catch (Exception $e) {
-        echo 'Erreur : ' . $e->getMessage();
-    }
-}
-
 function getClubNameById($clubId) {
     $db = connexionDB();
     try {

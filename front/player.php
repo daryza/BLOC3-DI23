@@ -1,7 +1,16 @@
 <?php
 require_once '../back/CRUD/player.php';
 
-$player_id = 25;
+session_start(); // Démarrer la session pour le menu
+
+// Récupération de l'ID du joueur à partir de l'URL
+$player_id = isset($_GET['player_id']) ? (int)$_GET['player_id'] : null;
+
+if (!$player_id) {
+    echo "Aucun joueur spécifié.";
+    exit();
+}
+
 $player = getPlayerById($player_id);
 
 if (!$player) {
@@ -27,33 +36,20 @@ $cartons_rouges = getCartons($player_id, 2);
 
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil du joueur - <?php echo $player_name; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/player.css">
 </head>
-
 <body>
 <header>
-    <nav class="menu-bar">
-        <div class="logo">
-            <a href="/var/www/html/BLOC3-DI23/front/accueil.php">
-                <img src="/BLOC3-DI23/front/assets/LogoBloc3.png" alt="Logo du site">
-            </a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="/var/www/html/BLOC3-DI23/front/monEquipe.php">Mon Equipe</a></li>
-            <li><a href="/var/www/html/BLOC3-DI23/front/lesEquipes.php">Les Equipes</a></li>
-            <li><a href="/var/www/html/BLOC3-DI23/front/gestionPofil.php">Mon Profil</a></li>
-        </ul>
-    </nav>
+    <?php include 'menu.php'; ?>
 </header>
 
 <section class="player-banner">
     <div class="club-logo-container">
-        <img src="/BLOC3-DI23/front/assets/club_logo/LogoPsg.png" alt="<?php echo $club_name; ?> Logo" class="club-logo">
+        <img src="/BLOC3-DI23/front/assets/club_logo/1.png" alt="<?php echo $club_name; ?> Logo" class="club-logo">
     </div>
     <div class="player-info">
         <div class="player-name">
@@ -67,7 +63,7 @@ $cartons_rouges = getCartons($player_id, 2);
 
 <section class="player-details">
     <div class="player-photo">
-        <img src="<?php echo $player_picture; ?>" alt="<?php echo $player_name; ?>">
+        <img src="<?php echo $player_picture; ?>" alt="<?php echo $player_name; ?>" onerror="this.onerror=null; this.src='/BLOC3-DI23/front/assets/player_picture_default.png';">
     </div>
     <div class="player-stats">
         <p><strong>Nom :</strong> <?php echo $player_name; ?></p>
@@ -84,5 +80,4 @@ $cartons_rouges = getCartons($player_id, 2);
     </div>
 </section>
 </body>
-
 </html>

@@ -62,6 +62,23 @@ function getUserById($userId) {
         $db = null;
     }
 }
+
+function getFavoriteClubId($user_id) {
+    $db = connexionDB();
+    try {
+        $sql = "SELECT user_favorite_club_id FROM user WHERE id = :user_id";
+        $req = $db->prepare($sql);
+        $req->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['user_favorite_club_id'] : null;
+    } catch (Exception $e) {
+        echo 'Erreur : ' . $e->getMessage();
+        return null;
+    }
+}
+
+
 ####################### UPDATE #######################
 function setUserPseudo($userId, $userNewPseudo){
     $db = connexionDB();

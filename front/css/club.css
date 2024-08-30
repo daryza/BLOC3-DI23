@@ -205,7 +205,7 @@ header {
 .club-coaches-and-match {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
 }
 
 .club-coaches,
