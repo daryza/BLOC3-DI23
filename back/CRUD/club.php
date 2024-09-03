@@ -22,6 +22,18 @@ function getAllClubs() {
     }
 }
 
+function getAllClubSId() {
+    $db = connexionDB();
+    try {
+        $sql = "SELECT id FROM club ORDER BY club_name ASC";
+        $req = $db->prepare($sql);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        echo 'Erreur : ' . $e->getMessage();
+    }
+}
+
 function getAllClubsName() {
     $db = connexionDB();
     try {
@@ -344,6 +356,69 @@ function getLastTeamLineupWithDetails($clubId) {
 }
 
 
+function getAllMatchGoalDifferences($club_id) {
+    $db = connexionDB();
+    try {
+        $sql = "
+            SELECT 
+                pre_match.id,
+                pre_match.date,
+                home_team.club_name AS home_team_name,
+                visitor_team.club_name AS visitor_team_name,
+                (COUNT(CASE WHEN team_lineup.club_id = pre_match.home_team_id THEN goal.id END) -
+                 COUNT(CASE WHEN team_lineup.club_id = pre_match.visitor_team_id THEN goal.id END)) AS goal_difference
+            FROM 
+                pre_match
+            LEFT JOIN 
+                club AS home_team ON pre_match.home_team_id = home_team.id
+            LEFT JOIN 
+                club AS visitor_team ON pre_match.visitor_team_id = visitor_team.id
+            LEFT JOIN 
+                team_lineup ON (team_lineup.club_id = pre_match.home_team_id OR team_lineup.club_id = pre_match.visitor_team_id)
+            LEFT JOIN 
+                team_lineup_player_selected ON team_lineup_player_selected.team_lineup_id = team_lineup.id
+            LEFT JOIN 
+                goal ON goal.team_lineup_player_selected_id = team_lineup_player_selected.id
+            WHERE 
+                pre_match.home_team_id = :club_id OR pre_match.visitor_team_id = :club_id
+            GROUP BY 
+                pre_match.id
+            ORDER BY 
+                goal_difference DESC";
+        
+        $req = $db->prepare($sql);
+        $req->bindParam(':club_id', $club_id, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        echo 'Erreur : ' . $e->getMessage();
+        return [];
+    }
+}
+
+function getBiggestWinAndLoss($club_id) {
+    $matches = getAllMatchGoalDifferences($club_id);
+
+    $biggest_win = null;
+    $biggest_loss = null;
+
+    foreach ($matches as $match) {
+        if ($match['goal_difference'] > 0) {
+            if (!$biggest_win || $match['goal_difference'] > $biggest_win['goal_difference']) {
+                $biggest_win = $match;
+            }
+        } elseif ($match['goal_difference'] < 0) {
+            if (!$biggest_loss || $match['goal_difference'] < $biggest_loss['goal_difference']) {
+                $biggest_loss = $match;
+            }
+        }
+    }
+
+    return [
+        'biggest_win' => $biggest_win,
+        'biggest_loss' => $biggest_loss
+    ];
+}
 
 
 
