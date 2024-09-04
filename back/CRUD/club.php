@@ -22,10 +22,10 @@ function getAllClubs() {
     }
 }
 
-function getAllClubSId() {
+function getAllClubsName() {
     $db = connexionDB();
     try {
-        $sql = "SELECT id FROM club ORDER BY club_name ASC";
+        $sql = "SELECT club_name FROM club ORDER BY club_name ASC";
         $req = $db->prepare($sql);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
@@ -33,11 +33,13 @@ function getAllClubSId() {
         echo 'Erreur : ' . $e->getMessage();
     }
 }
+//echo "<pre>";
+//var_dump(getAllClubs());
 
-function getAllClubsName() {
+function getAllClubSId() {
     $db = connexionDB();
     try {
-        $sql = "SELECT club_name FROM club ORDER BY club_name ASC";
+        $sql = "SELECT id FROM club ORDER BY club_name ASC";
         $req = $db->prepare($sql);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
@@ -99,23 +101,22 @@ function getAllclubsWithStadium() {
     }
 }
 
-function getCoachByClubIdAndRole($club_id, $role_id) {
+function getAllDataOfClubById($clubId) {
     $db = connexionDB();
     try {
-        $sql = "SELECT coach_name FROM coach WHERE club_id = :club_id AND coach_job_name_id = :role_id";
+        $sql = "SELECT * FROM club 
+        INNER JOIN stadium ON club.stadium_id = stadium.id
+        INNER JOIN coach ON club.id = coach.club_id
+        INNER JOIN pre_match ON club.id = pre_match.home_team_id OR club.id = pre_match.visitor_team_id
+        WHERE club.id = :clubId ORDER BY pre_match.date ASC";
         $req = $db->prepare($sql);
-        $req->bindParam(':club_id', $club_id, PDO::PARAM_INT);
-        $req->bindParam(':role_id', $role_id, PDO::PARAM_INT);
+        $req->bindValue(':clubId', $clubId, PDO::PARAM_INT);
         $req->execute();
-        $result = $req->fetch(PDO::FETCH_ASSOC);
-        return $result ? $result['coach_name'] : null;
+        return $req->fetch(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
         echo 'Erreur : ' . $e->getMessage();
-        return null;
     }
 }
-
-
 ####################### STATS CLUB #######################
 
 function getClubMatchResults($club_id, $type) {
@@ -363,8 +364,12 @@ function getAllMatchGoalDifferences($club_id) {
             SELECT 
                 pre_match.id,
                 pre_match.date,
+                pre_match.home_team_id,
+                pre_match.visitor_team_id,
                 home_team.club_name AS home_team_name,
                 visitor_team.club_name AS visitor_team_name,
+                COUNT(CASE WHEN team_lineup.club_id = pre_match.home_team_id THEN goal.id END) AS home_goals,
+                COUNT(CASE WHEN team_lineup.club_id = pre_match.visitor_team_id THEN goal.id END) AS visitor_goals,
                 (COUNT(CASE WHEN team_lineup.club_id = pre_match.home_team_id THEN goal.id END) -
                  COUNT(CASE WHEN team_lineup.club_id = pre_match.visitor_team_id THEN goal.id END)) AS goal_difference
             FROM 
@@ -419,7 +424,4 @@ function getBiggestWinAndLoss($club_id) {
         'biggest_loss' => $biggest_loss
     ];
 }
-
-
-
 ?>
