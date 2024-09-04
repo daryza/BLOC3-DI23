@@ -16,8 +16,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>
         <link rel="stylesheet" href="/BLOC3-DI23/front/css/login.css">
+        <link rel="stylesheet" type="text/css" href="/BLOC3-DI23/front/css/menu.css">
+
     </head>
     <body>
+    <header>
+        <?php include '/var/www/html/BLOC3-DI23/front/menu.php'; ?>
+    </header>
         <section id="main_container">
             <form id="sign_in" action="./process_login" method="POST">
                 <div class="form_item">
