@@ -26,6 +26,11 @@ $dernier_match_score = getDernierMatchScore($club_id);          // Score du dern
 $cartons_rouges = getCartonsRouges($club_id);                   // Nombre de cartons rouges
 $cartons_jaunes = getCartonsJaunes($club_id);                   // Nombre de cartons jaunes
 
+// Récupérer la plus grande victoire et défaite
+$biggestWinAndLoss = getBiggestWinAndLoss($club_id);
+$biggest_win = $biggestWinAndLoss['biggest_win'];
+$biggest_loss = $biggestWinAndLoss['biggest_loss'];
+
 // Connexion à la base de données
 $db = connexionDB();
 
@@ -97,14 +102,43 @@ $favorite_club_id = $user_id ? getFavoriteClubId($user_id) : null;
     <div class="club-info-container">
         <h3>GÉNÉRAL</h3>
         <div class="club-info">
-            <p>Matchs Gagnés : <?php echo $matchs_gagnes; ?></p>
-            <p>Matchs Perdus : <?php echo $matchs_perdus; ?></p>
+            <p>Pourcentage de victoire : <?php echo $matchs_gagnes ? round(($matchs_gagnes / ($matchs_gagnes + $matchs_perdus)) * 100) : 0; ?>%</p>
             <p>Buts Marqués : <?php echo $club_buts_marques; ?></p>
             <p>Buts Encaissés : <?php echo $club_buts_encaisses; ?></p>
             <p>Différence de Buts : <?php echo $difference_buts; ?></p>
             <p>Cartons Rouges : <?php echo $cartons_rouges; ?></p>
             <p>Cartons Jaunes : <?php echo $cartons_jaunes; ?></p>
-            <p>Résultat du dernier match : <?php echo $dernier_match_score; ?></p> 
+            <p>Dernier résultat : <?php echo $dernier_match_score; ?></p>
+            <p>
+                <?php 
+                if ($biggest_win) {
+                    if ($biggest_win['home_team_id'] == $club_id) {
+                        // Victoire à domicile
+                        echo "Plus grande victoire : " . $biggest_win['home_goals'] . "-" . $biggest_win['visitor_goals'];
+                    } else {
+                        // Victoire à l'extérieur
+                        echo "Plus grande victoire : " . $biggest_win['visitor_goals'] . "-" . $biggest_win['home_goals'];
+                    }
+                } else {
+                    echo "Plus grande victoire : Aucune victoire";
+                }
+                ?>
+            </p>
+            <p>
+                <?php 
+                if ($biggest_loss) {
+                    if ($biggest_loss['home_team_id'] == $club_id) {
+                        // Défaite à domicile
+                        echo "Plus grande défaite : " . $biggest_loss['visitor_goals'] . "-" . $biggest_loss['home_goals'];
+                    } else {
+                        // Défaite à l'extérieur
+                        echo "Plus grande défaite : " . $biggest_loss['home_goals'] . "-" . $biggest_loss['visitor_goals'];
+                    }
+                } else {
+                    echo "Plus grande défaite : Aucune défaite";
+                }
+                ?>
+            </p>
         </div>
     </div>
     
