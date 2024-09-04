@@ -23,3 +23,19 @@ function getCoachNameByClubId($clubId) {
         echo 'Erreur : ' . $e->getMessage();
     }
 }
+
+function getCoachByClubIdAndRole($club_id, $role_id) {
+    $db = connexionDB();
+    try {
+        $sql = "SELECT coach_name FROM coach WHERE club_id = :club_id AND coach_job_name_id = :role_id";
+        $req = $db->prepare($sql);
+        $req->bindParam(':club_id', $club_id, PDO::PARAM_INT);
+        $req->bindParam(':role_id', $role_id, PDO::PARAM_INT);
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['coach_name'] : null;
+    } catch (Exception $e) {
+        echo 'Erreur : ' . $e->getMessage();
+        return null;
+    }
+}
